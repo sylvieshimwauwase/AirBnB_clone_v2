@@ -89,5 +89,3 @@ def do_clean(number=0):
         " | sort -r | tr '\\n' ' ' | cut -d ' ' -f{}-)".format(start + 1)
     ]
     run(''.join(cmd_parts))
-
-
