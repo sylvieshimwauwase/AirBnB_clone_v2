@@ -7,16 +7,19 @@ app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
 def hello():
+    """displaying Hello HBNB!"""
     return "Hello HBNB!"
 
 
 @app.route('/hbnb', strict_slashes=False)
 def display():
+    """displaying HBNB"""
     return "HBNB"
 
 
 @app.route('/c/<text>', strict_slashes=False)
 def cText(text):
+    """display C followed by value of text"""
     return "C {}".format(text.replace("_", " "))
 
 
