@@ -13,6 +13,7 @@ from models.review import Review
 classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
            "Place": Place, "Review": Review, "State": State, "User": User}
 
+
 class FileStorage:
     """This class serializes instances to a JSON file and
     deserializes JSON file to instances
@@ -60,10 +61,12 @@ class FileStorage:
         """
         try:
             with open(self.__file_path, 'r', encoding="UTF-8") as f:
-                key1 = json.load(f)
-            for key in key1:
-                self.__objects[key] = classes[key1[key]["__class__"]](**key1[key])
-        except:
+                k = json.load(f)
+            for key in k:
+                self.__objects[key] = classes[k[key]["__class__"]](**k[key])
+        except FileNotFounError:
+            pass
+        except json.JSONDecodeError:
             pass
 
     def delete(self, obj=None):
@@ -77,7 +80,6 @@ class FileStorage:
         """ calls reload()
         """
         self.reload()
-
 
     def get(self, cls, id):
         """Retrieve an object"""
